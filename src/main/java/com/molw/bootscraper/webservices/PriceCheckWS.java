@@ -12,7 +12,7 @@ public class PriceCheckWS {
 	@GetMapping("/")
 	public PriceCheck checkThePrice(){
 		double price = DellCameraScraper.scrapeSite();
-		PriceCheck pc = new PriceCheck(35.5);
+		PriceCheck pc = new PriceCheck(price);
 		return pc;
 	}
 
