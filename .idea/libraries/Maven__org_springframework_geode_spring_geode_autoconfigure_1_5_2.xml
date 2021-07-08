@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: org.springframework.geode:spring-geode-autoconfigure:1.5.2">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/springframework/geode/spring-geode-autoconfigure/1.5.2/spring-geode-autoconfigure-1.5.2.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/org/springframework/geode/spring-geode-autoconfigure/1.5.2/spring-geode-autoconfigure-1.5.2-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/springframework/geode/spring-geode-autoconfigure/1.5.2/spring-geode-autoconfigure-1.5.2-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
