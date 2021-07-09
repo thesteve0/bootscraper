@@ -10,7 +10,8 @@ import java.io.IOException;
 
 public class DellCameraScraper {
 
-	private static final StringBuffer model = new StringBuffer("Sony Alpha a7 III Mirrorless Camera with FE 28-70 mm F3.5-5.6 OSS Lens");
+	//private static final StringBuffer model = new StringBuffer("Sony Alpha a7 III Mirrorless Camera with FE 28-70 mm F3.5-5.6 OSS Lens");
+	private static final String model = "Sony Alpha a7 III Mirrorless Camera with FE 28-70 mm F3.5-5.6 OSS Lens";		
 	//Computed this in FF and this gives us all the top level boxes
 	private static final String boxCSS = "html.no-js body main div.accessories-result.container section#accessories-result-sub section#middle-content div.accessoriesCategoryResults div.accessories-result-product-stack div.no-div-lines-layout div#ps-wrapper.ps";
 	//private static final String boxCSS = "html.no-js body main div.accessories-result.container section#accessories-result-sub section#middle-content div.accessoriesCategoryResults div.accessories-result-product-stack div.no-div-lines-layout div#ps-wrapper.ps article#aa114449.stack-accessories.ps-stack section.ps-top";
@@ -26,14 +27,19 @@ public class DellCameraScraper {
 			Elements boxes = doc.select(boxCSS).first().getElementsByTag("article");
 
 			//boxes is the list I actually want to run through a stream
-			//code below is trying to figure out the filter for the stream
-			Element firstBox = boxes.first(); // this is where we would actually start to filter
-
-			//this tells us if the title for the link is the model string above
-			boolean isOurCamera = firstBox.getElementsByClass("ps-title").text().contentEquals(model);
-
-			// How to pull out the price
-			result = Double.parseDouble(firstBox.getElementsByClass("ps-dell-price ps-simplified").text().substring(1));
+			result = boxes.stream()
+					// filter out to just the product we want
+					.filter(
+							box -> model.equals(box.getElementsByClass("ps-title").text())
+					)
+					//extract the price string and then make sure it can be cast to a double
+					.mapToDouble(cameraBox -> Double.parseDouble(cameraBox.getElementsByClass("ps-dell-price ps-simplified").text().replace(",", "").substring(1)))
+					//make sure there are no more than 1 value in the resulting stream
+					.reduce((a, b) -> {
+						throw new IllegalStateException("Multiple Products match on the page: " + a + ", " + b);
+					})
+					//get the value out of the single element left
+					.getAsDouble();
 
 			System.out.println("here");
 		} catch (Exception e) {
