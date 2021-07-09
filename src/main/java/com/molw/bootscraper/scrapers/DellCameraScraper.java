@@ -1,20 +1,16 @@
-package com.molw.bootscraper.scapers;
+package com.molw.bootscraper.scrapers;
 
-import com.molw.bootscraper.data.PriceCheck;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-
-import java.io.IOException;
 
 public class DellCameraScraper {
 
-	//private static final StringBuffer model = new StringBuffer("Sony Alpha a7 III Mirrorless Camera with FE 28-70 mm F3.5-5.6 OSS Lens");
+	//The title for the camera we want
 	private static final String model = "Sony Alpha a7 III Mirrorless Camera with FE 28-70 mm F3.5-5.6 OSS Lens";		
 	//Computed this in FF and this gives us all the top level boxes
 	private static final String boxCSS = "html.no-js body main div.accessories-result.container section#accessories-result-sub section#middle-content div.accessoriesCategoryResults div.accessories-result-product-stack div.no-div-lines-layout div#ps-wrapper.ps";
-	//private static final String boxCSS = "html.no-js body main div.accessories-result.container section#accessories-result-sub section#middle-content div.accessoriesCategoryResults div.accessories-result-product-stack div.no-div-lines-layout div#ps-wrapper.ps article#aa114449.stack-accessories.ps-stack section.ps-top";
+
 
 
 	public static double scrapeSite(){
