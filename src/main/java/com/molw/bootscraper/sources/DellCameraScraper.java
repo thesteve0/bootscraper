@@ -1,4 +1,4 @@
-package com.molw.bootscraper.scrapers;
+package com.molw.bootscraper.sources;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -29,7 +29,9 @@ public class DellCameraScraper {
 							box -> model.equals(box.getElementsByClass("ps-title").text())
 					)
 					//extract the price string and then make sure it can be cast to a double
-					.mapToDouble(cameraBox -> Double.parseDouble(cameraBox.getElementsByClass("ps-dell-price ps-simplified").text().replace(",", "").substring(1)))
+					.mapToDouble(
+							cameraBox -> Double.parseDouble(cameraBox.getElementsByClass("ps-dell-price ps-simplified").text().replace(",", "").substring(1))
+					)
 					//make sure there are no more than 1 value in the resulting stream
 					.reduce((a, b) -> {
 						throw new IllegalStateException("Multiple Products match on the page: " + a + ", " + b);
