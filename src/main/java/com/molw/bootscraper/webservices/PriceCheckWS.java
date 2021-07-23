@@ -20,8 +20,9 @@ public class PriceCheckWS {
 
 	@GetMapping("/currency")
 	public DigitalCurrencies getDigitaCurrencyQuotes(){
-		  return DigiCurrencyFetcher.getQuotes();
-		
+		  DigiCurrencyFetcher dcFetcher = new DigiCurrencyFetcher();
+		  return dcFetcher.getQuotes();
+		  		
 	}
 
 

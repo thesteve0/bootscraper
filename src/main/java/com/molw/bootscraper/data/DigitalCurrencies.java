@@ -1,24 +1,25 @@
 package com.molw.bootscraper.data;
 
 import java.time.ZonedDateTime;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class DigitalCurrencies {
 
-	private HashMap<String, Double> quotes = new HashMap<String, Double>();
+	private ArrayList<Quote> quotes = new ArrayList<Quote>();
 	private final ZonedDateTime checkTime = ZonedDateTime.now();
 
-	public DigitalCurrencies(HashMap<String, Double> quotes) {
+	public DigitalCurrencies(ArrayList<Quote> quotes) {
 		this.quotes = quotes;
 	}
 
 	public DigitalCurrencies() {}
 
-	public HashMap<String, Double> getQuotes() {
+	public ArrayList<Quote> getQuotes() {
 		return quotes;
 	}
 
-	public void setQuotes(HashMap<String, Double> quotes) {
+	public void setQuotes(ArrayList<Quote> quotes) {
 		this.quotes = quotes;
 	}
 
